@@ -38,7 +38,30 @@ python -c "from transformers import pipeline; print(pipeline('sentiment-analysis
 ```
 
 ## 3. 离线模型运行
+### 3.1 模型下载
+```python
+from huggingface_hub import snapshot_download
 
+model_name = 'uer/gpt2-chinese-cluecorpussmall'
+cache_dir = ''
+
+snapshot_download(repo_id=model_name, cache_dir=cache_dir)
+
+```
+```python
+from huggingface_hub import hf_hub_download
+import os
+
+model_name = 'Jackrong/Qwen3.5-4B-Claude-4.6-Opus-Reasoning-Distilled-v2-GGUF'
+cache_dir = f'model/{model_name}'
+
+# 下载 GGUF 模型文件 (Q4_K_M 量化版本 - 平衡质量和大小)
+model_file = hf_hub_download(
+    repo_id=model_name,
+    filename="Qwen3.5-4B.Q4_K_M.gguf",
+    cache_dir=cache_dir
+)
+```
 ## 4. LoRA微调
 
 ## 5. 模型蒸馏
